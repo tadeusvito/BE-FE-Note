@@ -1,6 +1,6 @@
 import {Sequelize} from "sequelize";
 
-const db = new Sequelize('notes', 'root', '',{
+const db = new Sequelize('catatan', 'root', '',{
     host: '34.55.218.205',
     dialect: 'mysql'
 });

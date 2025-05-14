@@ -1,8 +1,12 @@
 import {Sequelize} from "sequelize";
+import dotenv from "dotenv";
 
-const db = new Sequelize('catatan', 'root', 'sitanggang',{
-    host: '34.71.128.239',
-    dialect: 'mysql'
+dotenv.config();
+
+
+const db = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
+    host: process.env.DB_HOST,
+    dialect: 'mysql',
 });
 
 export default db;

@@ -3,20 +3,20 @@ steps:
     args: ["cp", "${_ENV}", "backend/.env"]
 
   - name: "gcr.io/cloud-builders/docker"
-    args: ["build", "-t", "gcr.io/$PROJECT_ID/be-notes-vito", "."]
+    args: ["build", "-t", "gcr.io/$PROJECT_ID/be-auth-vito", "."]
     dir: "backend"
 
   - name: "gcr.io/cloud-builders/docker"
-    args: ["push", "gcr.io/$PROJECT_ID/be-notes-vito"]
+    args: ["push", "gcr.io/$PROJECT_ID/be-auth-vito"]
 
   - name: "gcr.io/cloud-builders/gcloud"
     args:
       [
         "run",
         "deploy",
-        "be-notes-vito",
+        "be-auth-vito",
         "--image",
-        "gcr.io/$PROJECT_ID/be-notes-vito",
+        "gcr.io/$PROJECT_ID/be-auth-vito",
         "--timeout",
         "1000s",
         "--port",
@@ -29,5 +29,3 @@ steps:
 options:
   logging: CLOUD_LOGGING_ONLY
 
-substitutions:
-  _ENV: gs://catatan-vito/.env

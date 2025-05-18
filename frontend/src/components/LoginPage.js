@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import axios from "axios";
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
@@ -43,7 +44,7 @@ const Login = () => {
     <div className="columns is-centered mt-6">
       <div className="column is-one-third">
         <div className="box has-background-dark">
-          <h1 className="title has-text-centered has-text-light">Masuk ke NoteX</h1>
+          <h1 className="title has-text-centered has-text-light">Masuk ke Noteeee</h1>
           <p className="has-text-centered has-text-grey-light mb-4">Silakan masuk untuk mengelola catatan Anda</p>
 
           {getDisplayError() && (

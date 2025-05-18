@@ -30,6 +30,10 @@ export const AuthProvider = ({ children }) => {
       const res = await axios.post(`${BASE_URL}/login`, { email, password }, { withCredentials: true });
       if (res.data.status === 'Success') {
         setIsAuthenticated(true);
+        // Simpan accessToken ke localStorage agar bisa digunakan di request berikutnya
+        if (res.data.accessToken) {
+          localStorage.setItem('accessToken', res.data.accessToken);
+        }
         return true;
       } else {
         setAuthError(res.data.message || 'Login gagal');

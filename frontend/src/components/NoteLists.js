@@ -11,8 +11,18 @@ const UserLists = () => {
     }, []);
 
     const getNotes = async () => {
-        const response = await axios.get(`${BASE_URL}/note`);
-        setUser(response.data);
+        try {
+            // Kirim access token dari localStorage/sessionStorage jika ada
+            const accessToken = localStorage.getItem('accessToken');
+            const response = await axios.get(`${BASE_URL}/note`, {
+                withCredentials: true,
+                headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {}
+            });
+            setUser(response.data);
+        } catch (error) {
+            // Jika error 401, bisa trigger refresh token di sini (opsional)
+            console.log(error);
+        }
     }
 
     const hapusnotes = async (id) => {
